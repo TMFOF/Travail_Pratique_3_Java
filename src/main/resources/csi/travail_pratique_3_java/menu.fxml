@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="529.0" prefWidth="659.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="csi.travail_pratique_3_java.HelloController">
+   <left>
+      <VBox prefHeight="529.0" prefWidth="212.0" spacing="70.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" prefHeight="25.0" prefWidth="166.0" text="MENU">
+               <font>
+                  <Font name="Times New Roman Bold" size="12.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="15.0" />
+               </VBox.margin>
+            </Label>
+            <Button fx:id="boutonBalleRebon" mnemonicParsing="false" onAction="#onBoutonBalleRebonClic" prefHeight="25.0" prefWidth="166.0" text="BALLES REBONDISSANTES">
+               <VBox.margin>
+                  <Insets left="15.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+            </Button>
+            <Button fx:id="boutonMotsCache" mnemonicParsing="false" onAction="#onBoutonMotsCacheClic" prefHeight="25.0" prefWidth="166.0" text="MOTS CACHÉS">
+               <VBox.margin>
+                  <Insets left="15.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="Times New Roman Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="boutonReglement" mnemonicParsing="false" onAction="#onBoutonReglements" prefHeight="25.0" prefWidth="166.0" text="RÈGLEMENTS">
+               <VBox.margin>
+                  <Insets left="15.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="Times New Roman Bold" size="11.0" />
+               </font>
+            </Button>
+            <Button fx:id="boutonQuitter" mnemonicParsing="false" onAction="#onBoutonQuitter" prefHeight="25.0" prefWidth="166.0" text="QUITTER">
+               <VBox.margin>
+                  <Insets left="15.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+            </Button>
+         </children>
+         <padding>
+            <Insets bottom="30.0" left="15.0" right="15.0" top="30.0" />
+         </padding>
+      </VBox>
+   </left>
+   <center>
+      <Pane prefHeight="200.0" prefWidth="383.0" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>
