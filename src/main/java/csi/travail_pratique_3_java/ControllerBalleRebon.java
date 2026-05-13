@@ -3,17 +3,12 @@ package csi.travail_pratique_3_java;
 import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-
-import javax.naming.InitialContext;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
@@ -21,12 +16,7 @@ import java.util.ResourceBundle;
 
 public class ControllerBalleRebon implements Initializable {
 
-    @FXML
-    private Button boutonAjouterDesBalles;
-    @FXML
-    private Button boutonAjouterUneBalle;
-    @FXML
-    private Button boutonRetirerUneBalle;
+    // La zone de jeu dans laquelle les balles se déplacent
     @FXML
     private Pane zoneJeu;
 
@@ -36,16 +26,17 @@ public class ControllerBalleRebon implements Initializable {
     private ArrayList<Double>    vitessesY = new ArrayList<>();
     private ArrayList<String>    types     = new ArrayList<>();
 
-
     private int    compteur = 0;
     private Random random   = new Random();
+
+    // Les 3 images chargées une seule fois au démarrage
     private Image imgRoche;
     private Image imgPapier;
     private Image imgCiseau;
 
     private static final int RAYON = 25;
 
-
+    // Méthode appelée automatiquement par JavaFX au chargement du FXML
     public void initialize( URL url, ResourceBundle rb) {
 
         // Charger les 3 images
@@ -53,16 +44,15 @@ public class ControllerBalleRebon implements Initializable {
         imgPapier = new Image(getClass().getResourceAsStream("/images/papier.png"));
         imgCiseau = new Image(getClass().getResourceAsStream("/images/ciseau.png"));
 
-        // Démarrer la boucle de jeu (60 fois par seconde)
+        // Créer la boucle de jeu qui s'exécute 60 fois par seconde
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long maintenant) {
-                deplacerToutesLesBalles();
+                deplacerToutesLesBalles(); // Déplacer toutes les balles et vérifier les rebonds
                 verifierToutesLesCollisions();
             }
         };
-        timer.start();
-
+        timer.start();// Démarrer la boucle de jeu
     }
 
     @FXML
@@ -70,7 +60,6 @@ public class ControllerBalleRebon implements Initializable {
         ajouterUneBalle();
         ajouterUneBalle();
         ajouterUneBalle();
-
     }
 
     @FXML
@@ -81,12 +70,16 @@ public class ControllerBalleRebon implements Initializable {
     @FXML
     void onBoutonRetirerUneBalle(ActionEvent event) {
 
+        // Si aucune balle dans le jeu, on ne fait rien
         if (cercles.isEmpty()) return;
 
-        int i = cercles.size() - 1; // index de la dernière balle
+        int i = cercles.size() - 1; // Récupérer l'index de la dernière balle
 
+        // Effacer le cercle et l'image de l'écran
         zoneJeu.getChildren().remove(cercles.get(i));
         zoneJeu.getChildren().remove(images.get(i));
+
+        // Supprimer la balle des 5 listes
         cercles.remove(i);
         images.remove(i);
         vitessesX.remove(i);
@@ -96,28 +89,32 @@ public class ControllerBalleRebon implements Initializable {
         if (compteur > 0) compteur--;
     }
 
+    // Crée une nouvelle balle et l'ajoute dans le jeu
     private void ajouterUneBalle() {
 
-        // Choisir le type selon l'ordre roche → papier → ciseau → roche → ...
+        // Choisir le type selon l'ordre : roche, papier, ciseau, roche, papier
+        // Le modulo 3 crée un cycle automatique
         String type;
         if      (compteur % 3 == 0) type = "roche";
         else if (compteur % 3 == 1) type = "papier";
         else                        type = "ciseau";
+
+        // Augmenter le compteur pour la prochaine balle
         compteur++;
 
         // Position aléatoire
         double x = RAYON + random.nextDouble() * (zoneJeu.getWidth()  - RAYON * 2);
         double y = RAYON + random.nextDouble() * (zoneJeu.getHeight() - RAYON * 2);
 
-        // Vitesse aléatoire (positive = droite/bas, négative = gauche/haut)
-        double vx;
+        // Choisir une direction horizontale aléatoire
+        double vx,vy;
+
         if (random.nextBoolean()) {
             vx = 2.0;
         } else {
             vx = -2.0;
         }
 
-        double vy;
         if (random.nextBoolean()) {
             vy = 2.0;
         } else {
@@ -126,18 +123,20 @@ public class ControllerBalleRebon implements Initializable {
 
         // Créer le cercle (rond noir transparent dedans)
         Circle cercle = new Circle(x, y, RAYON);
-        cercle.setFill(Color.TRANSPARENT);
-        cercle.setStroke(Color.BLACK);
-        cercle.setStrokeWidth(2);
+        cercle.setFill(Color.TRANSPARENT); // intérieur vide pour voir l'image
+        cercle.setStroke(Color.BLACK);// contour noir
+        cercle.setStrokeWidth(2); // épaisseur du contour
 
         // Créer l'image à l'intérieur
         ImageView imageView = new ImageView(obtenirImage(type));
+        // largeur
         imageView.setFitWidth(RAYON * 2);
         imageView.setFitHeight(RAYON * 2);
+        // hauteur
         imageView.setLayoutX(x - RAYON);
         imageView.setLayoutY(y - RAYON);
 
-        // Sauvegarder dans les listes
+        // Sauvegarder toutes les informations de la balle dans les 5 listes
         cercles.add(cercle);
         images.add(imageView);
         vitessesX.add(vx);
@@ -148,24 +147,26 @@ public class ControllerBalleRebon implements Initializable {
         zoneJeu.getChildren().addAll(imageView, cercle);
     }
 
-
+    // Déplace toutes les balles et gère les rebonds sur les murs
     private void deplacerToutesLesBalles() {
 
+        // Parcourir toutes les balles une par une
         for (int i = 0; i < cercles.size(); i++) {
 
             Circle cercle = cercles.get(i);
+
             double x  = cercle.getCenterX();
             double y  = cercle.getCenterY();
             double vx = vitessesX.get(i);
             double vy = vitessesY.get(i);
 
-            // Rebond mur gauche ou droit → inverser la vitesse horizontale
+            // Si la balle touche le mur gauche ou le mur droit
             if (x - RAYON <= 0 || x + RAYON >= zoneJeu.getWidth()) {
                 vx = -vx;
                 vitessesX.set(i, vx);
             }
 
-            // Rebond mur haut ou bas → inverser la vitesse verticale
+            // Si la balle touche le mur du haut ou le mur du bas
             if (y - RAYON <= 0 || y + RAYON >= zoneJeu.getHeight()) {
                 vy = -vy;
                 vitessesY.set(i, vy);
@@ -183,6 +184,8 @@ public class ControllerBalleRebon implements Initializable {
 
     private void verifierToutesLesCollisions() {
 
+        // Comparer chaque balle avec toutes les balles suivantes
+        // pour éviter de vérifier la même paire deux fois
         for (int i = 0; i < cercles.size(); i++) {
             for (int j = i + 1; j < cercles.size(); j++) {
 
@@ -194,7 +197,7 @@ public class ControllerBalleRebon implements Initializable {
                 double distY = a.getCenterY() - b.getCenterY();
                 double dist  = Math.sqrt(distX * distX + distY * distY);
 
-                // Si distance < 2 rayons → les balles se touchent
+                // Si distance < 2 rayons  les balles se touchent
                 if (dist < RAYON * 2) {
 
                     String typeA = types.get(i);
@@ -230,7 +233,6 @@ public class ControllerBalleRebon implements Initializable {
                         types.set(i, "papier");
                         images.get(i).setImage(imgPapier);
                     }
-                    // Même type → égalité, rien ne change
 
                     // Rebond : les deux balles échangent leurs vitesses
                     double tmpVx = vitessesX.get(i);
@@ -244,16 +246,16 @@ public class ControllerBalleRebon implements Initializable {
         }
     }
 
+    // Retourne l'image qui correspond au type recu en parametre
     private Image obtenirImage(String type) {
         if (type.equals("roche"))  return imgRoche;
         if (type.equals("papier")) return imgPapier;
         return imgCiseau;
     }
 
-
+    // Reference vers le controleur du menu principal
     private HelloController helloController;
     public void setHelloController(HelloController helloController) {
         this.helloController = helloController;
     }
-
 }
