@@ -10,16 +10,25 @@ import java.io.IOException;
 public class HelloApplication extends Application {
 
     private static Stage stage;
-    private static final int LARGEUR_APPLICATION = 600;
-    private static final int HAUTEUR_APPLICATION = 400;
+    private static final int LARGEUR_APPLICATION = 900;
+    private static final int HAUTEUR_APPLICATION = 600;
+
     @Override
     public void start(Stage stage) throws IOException {
+
+        stage.setMinWidth(900);
+        stage.setMinHeight(600);
+        stage.setMaxWidth(1200);
+        stage.setMaxHeight(700);
+
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("menu.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), LARGEUR_APPLICATION, HAUTEUR_APPLICATION);
 
         HelloApplication.stage = stage;
-        stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
     }
+
+    public static Stage getStage() {
+        return stage;}
 }
