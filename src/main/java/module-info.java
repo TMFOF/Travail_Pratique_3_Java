@@ -1,6 +1,7 @@
 module csi.travail_pratique_3_java {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.naming;
 
 
     opens csi.travail_pratique_3_java to javafx.fxml;

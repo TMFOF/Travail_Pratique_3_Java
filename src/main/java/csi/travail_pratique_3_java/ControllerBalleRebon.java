@@ -1,8 +1,10 @@
 package csi.travail_pratique_3_java;
 
+import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -10,11 +12,14 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
+import javax.naming.InitialContext;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.ResourceBundle;
 
-public class ControllerBalleRebon {
+public class ControllerBalleRebon implements Initializable {
 
     @FXML
     private Button boutonAjouterDesBalles;
@@ -39,6 +44,16 @@ public class ControllerBalleRebon {
     private Image imgCiseau;
 
     private static final int RAYON = 25;
+
+
+    public void initialize( URL url, ResourceBundle rb) {
+
+        // Charger les 3 images
+        imgRoche  = new Image(getClass().getResourceAsStream("/images/roche.png"));
+        imgPapier = new Image(getClass().getResourceAsStream("/images/papier.png"));
+        imgCiseau = new Image(getClass().getResourceAsStream("/images/ciseau.png"));
+
+    }
 
     @FXML
     void onBoutonAjouterDesBalles(ActionEvent event) {
