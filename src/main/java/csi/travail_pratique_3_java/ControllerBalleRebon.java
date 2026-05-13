@@ -58,6 +58,7 @@ public class ControllerBalleRebon implements Initializable {
             @Override
             public void handle(long maintenant) {
                 deplacerToutesLesBalles();
+                verifierToutesLesCollisions();
             }
         };
         timer.start();
@@ -179,6 +180,70 @@ public class ControllerBalleRebon implements Initializable {
             images.get(i).setLayoutY(cercle.getCenterY() - RAYON);
         }
     }
+
+    private void verifierToutesLesCollisions() {
+
+        for (int i = 0; i < cercles.size(); i++) {
+            for (int j = i + 1; j < cercles.size(); j++) {
+
+                Circle a = cercles.get(i);
+                Circle b = cercles.get(j);
+
+                // Calculer la distance entre les deux centres (Pythagore)
+                double distX = a.getCenterX() - b.getCenterX();
+                double distY = a.getCenterY() - b.getCenterY();
+                double dist  = Math.sqrt(distX * distX + distY * distY);
+
+                // Si distance < 2 rayons → les balles se touchent
+                if (dist < RAYON * 2) {
+
+                    String typeA = types.get(i);
+                    String typeB = types.get(j);
+
+                    // Roche bat Ciseau
+                    if (typeA.equals("roche") && typeB.equals("ciseau")) {
+                        types.set(j, "roche");
+                        images.get(j).setImage(imgRoche);
+
+                        // Ciseau bat Papier
+                    } else if (typeA.equals("ciseau") && typeB.equals("papier")) {
+                        types.set(j, "ciseau");
+                        images.get(j).setImage(imgCiseau);
+
+                        // Papier bat Roche
+                    } else if (typeA.equals("papier") && typeB.equals("roche")) {
+                        types.set(j, "papier");
+                        images.get(j).setImage(imgPapier);
+
+                        // Roche bat Ciseau (B gagne)
+                    } else if (typeB.equals("roche") && typeA.equals("ciseau")) {
+                        types.set(i, "roche");
+                        images.get(i).setImage(imgRoche);
+
+                        // Ciseau bat Papier (B gagne)
+                    } else if (typeB.equals("ciseau") && typeA.equals("papier")) {
+                        types.set(i, "ciseau");
+                        images.get(i).setImage(imgCiseau);
+
+                        // Papier bat Roche (B gagne)
+                    } else if (typeB.equals("papier") && typeA.equals("roche")) {
+                        types.set(i, "papier");
+                        images.get(i).setImage(imgPapier);
+                    }
+                    // Même type → égalité, rien ne change
+
+                    // Rebond : les deux balles échangent leurs vitesses
+                    double tmpVx = vitessesX.get(i);
+                    double tmpVy = vitessesY.get(i);
+                    vitessesX.set(i, vitessesX.get(j));
+                    vitessesY.set(i, vitessesY.get(j));
+                    vitessesX.set(j, tmpVx);
+                    vitessesY.set(j, tmpVy);
+                }
+            }
+        }
+    }
+
     private Image obtenirImage(String type) {
         if (type.equals("roche"))  return imgRoche;
         if (type.equals("papier")) return imgPapier;
