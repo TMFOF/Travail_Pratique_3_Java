@@ -53,6 +53,15 @@ public class ControllerBalleRebon implements Initializable {
         imgPapier = new Image(getClass().getResourceAsStream("/images/papier.png"));
         imgCiseau = new Image(getClass().getResourceAsStream("/images/ciseau.png"));
 
+        // Démarrer la boucle de jeu (60 fois par seconde)
+        AnimationTimer timer = new AnimationTimer() {
+            @Override
+            public void handle(long maintenant) {
+                deplacerToutesLesBalles();
+            }
+        };
+        timer.start();
+
     }
 
     @FXML
@@ -138,6 +147,38 @@ public class ControllerBalleRebon implements Initializable {
         zoneJeu.getChildren().addAll(imageView, cercle);
     }
 
+
+    private void deplacerToutesLesBalles() {
+
+        for (int i = 0; i < cercles.size(); i++) {
+
+            Circle cercle = cercles.get(i);
+            double x  = cercle.getCenterX();
+            double y  = cercle.getCenterY();
+            double vx = vitessesX.get(i);
+            double vy = vitessesY.get(i);
+
+            // Rebond mur gauche ou droit → inverser la vitesse horizontale
+            if (x - RAYON <= 0 || x + RAYON >= zoneJeu.getWidth()) {
+                vx = -vx;
+                vitessesX.set(i, vx);
+            }
+
+            // Rebond mur haut ou bas → inverser la vitesse verticale
+            if (y - RAYON <= 0 || y + RAYON >= zoneJeu.getHeight()) {
+                vy = -vy;
+                vitessesY.set(i, vy);
+            }
+
+            // Déplacer le cercle
+            cercle.setCenterX(x + vx);
+            cercle.setCenterY(y + vy);
+
+            // Déplacer l'image au même endroit
+            images.get(i).setLayoutX(cercle.getCenterX() - RAYON);
+            images.get(i).setLayoutY(cercle.getCenterY() - RAYON);
+        }
+    }
     private Image obtenirImage(String type) {
         if (type.equals("roche"))  return imgRoche;
         if (type.equals("papier")) return imgPapier;
