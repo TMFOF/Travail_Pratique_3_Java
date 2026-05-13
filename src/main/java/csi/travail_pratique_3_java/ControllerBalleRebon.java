@@ -56,6 +56,19 @@ public class ControllerBalleRebon {
     @FXML
     void onBoutonRetirerUneBalle(ActionEvent event) {
 
+        if (cercles.isEmpty()) return;
+
+        int i = cercles.size() - 1; // index de la dernière balle
+
+        zoneJeu.getChildren().remove(cercles.get(i));
+        zoneJeu.getChildren().remove(images.get(i));
+        cercles.remove(i);
+        images.remove(i);
+        vitessesX.remove(i);
+        vitessesY.remove(i);
+        types.remove(i);
+
+        if (compteur > 0) compteur--;
     }
 
     private void ajouterUneBalle() {
