@@ -1,14 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.media.MediaView?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="csi.travail_pratique_3_java.HelloApplication"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="653.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="csi.travail_pratique_3_java.ControllerMotsCaches">
+   <left>
+      <VBox prefHeight="234.0" prefWidth="72.0" BorderPane.alignment="CENTER" />
+   </left>
+   <right>
+      <VBox prefHeight="234.0" prefWidth="68.0" BorderPane.alignment="CENTER" />
+   </right>
+   <top>
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Thème :" />
+            <ComboBox fx:id="comboTheme" prefHeight="26.0" prefWidth="44.0">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </ComboBox>
+            <Label text="JEU DE MOTS CACHÉS">
+               <HBox.margin>
+                  <Insets left="145.0" top="40.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="labelMotCache" text="* * * * * *" translateY="10.0">
+               <VBox.margin>
+                  <Insets left="179.0" />
+               </VBox.margin>
+            </Label>
+            <Label fx:id="labelIndice" text="Indice : ..." translateY="25.0">
+               <VBox.margin>
+                  <Insets left="179.0" />
+               </VBox.margin>
+            </Label>
+            <HBox prefHeight="176.0" prefWidth="400.0">
+               <children>
+                  <Label text="Reponse :" translateX="100.0" translateY="54.0" />
+                  <TextField fx:id="champReponse" prefHeight="26.0" prefWidth="142.0" translateY="50.0">
+                     <HBox.margin>
+                        <Insets left="120.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
+            <Label fx:id="labelMessage" translateX="220.0" translateY="-60.0" />
+            <Label fx:id="labelEssais" translateX="195.0" translateY="-20.0" />
+            <Label fx:id="labelScore" translateX="215.0" translateY="23.0" />
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="boutonValider" mnemonicParsing="false" onAction="#onValider" text="Valider" translateX="150.0" translateY="70.0" />
+                  <Button fx:id="boutonSuivant" mnemonicParsing="false" onAction="#onMotSuivant" text="Mot suivant" translateX="200.0" translateY="70.0" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+   <bottom>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <MediaView fx:id="mediaView" fitHeight="95.0" fitWidth="100.0" translateX="250.0" translateY="30.0" />
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#onJouerMusique" text="Jouer Musique" translateX="200.0" translateY="60.0" />
+                  <Button mnemonicParsing="false" onAction="#onJouerVideo" text="Jouer Video" translateX="250.0" translateY="60.0" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </bottom>
+</BorderPane>
