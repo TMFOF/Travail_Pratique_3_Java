@@ -11,13 +11,13 @@ public class HelloApplication extends Application {
 
     private static Stage stage;
     private static final int LARGEUR_APPLICATION = 900;
-    private static final int HAUTEUR_APPLICATION = 600;
+    private static final int HAUTEUR_APPLICATION = 700;
 
     @Override
     public void start(Stage stage) throws IOException {
 
         stage.setMinWidth(900);
-        stage.setMinHeight(600);
+        stage.setMinHeight(700);
         stage.setMaxWidth(1200);
         stage.setMaxHeight(700);
 

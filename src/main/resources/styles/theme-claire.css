@@ -1,0 +1,129 @@
+/* theme-clair.css - Theme par defaut (fond blanc, texte fonce) */
+
+/* Fond principal de la fenetre */
+#panePrincipal {
+    -fx-background-color: #FFFFFF;
+}
+
+/* Boite du haut avec le titre et le theme */
+#boiteHaut {
+    -fx-background-color: #3498DB;
+    -fx-padding: 15;
+    -fx-spacing: 8;
+}
+
+/* Titre du jeu */
+#labelTitre {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+/* Label Theme */
+#labelTheme {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 13px;
+}
+
+/* Boite du choix de theme */
+#boiteTheme {
+    -fx-alignment: CENTER_LEFT;
+    -fx-spacing: 8;
+}
+
+/* Zone centrale du jeu */
+#boiteCentre {
+    -fx-background-color: #F0F4FF;
+    -fx-padding: 30;
+}
+
+/* Le mot cache affiche en gros */
+#labelMotCache {
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2C3E50;
+    -fx-font-family: "Courier New";
+}
+
+/* L indice du mot */
+#labelIndice {
+    -fx-font-size: 14px;
+    -fx-text-fill: #555555;
+    -fx-font-style: italic;
+}
+
+/* Label Reponse */
+#labelReponse {
+    -fx-font-size: 13px;
+    -fx-text-fill: #2C3E50;
+}
+
+/* Champ ou le joueur ecrit sa reponse */
+#champReponse {
+    -fx-pref-width: 200;
+    -fx-font-size: 14px;
+    -fx-border-color: #3498DB;
+    -fx-border-width: 2;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+/* Message Bravo ou Essaie encore */
+#labelMessage {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #27AE60;
+}
+
+/* Nombre d essais restants */
+#labelEssais {
+    -fx-font-size: 13px;
+    -fx-text-fill: #E74C3C;
+}
+
+/* Score du joueur */
+#labelScore {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2C3E50;
+}
+
+/* Bouton Valider */
+#boutonValider {
+    -fx-background-color: #3498DB;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 8 20 8 20;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+}
+
+/* Bouton Mot suivant */
+#boutonSuivant {
+    -fx-background-color: #27AE60;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 8 20 8 20;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+}
+
+/* Zone des medias en bas */
+#boiteBas {
+    -fx-background-color: #D6EAF8;
+    -fx-padding: 10;
+    -fx-border-color: #AED6F1;
+    -fx-border-width: 1 0 0 0;
+}
+
+/* Boutons musique et video */
+#boutonMusique, #boutonVideo {
+    -fx-background-color: #5D6D7E;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 12px;
+    -fx-padding: 6 14 6 14;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+}
