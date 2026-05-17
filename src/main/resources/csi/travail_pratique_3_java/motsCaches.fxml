@@ -9,23 +9,24 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.media.MediaView?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane fx:id="panePrincipal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="csi.travail_pratique_3_java.ControllerMotsCaches">
    <left>
-      <VBox prefHeight="365.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+      <VBox prefHeight="384.0" prefWidth="58.0" BorderPane.alignment="CENTER" />
    </left>
    <right>
-      <VBox prefHeight="365.0" prefWidth="155.0" spacing="45.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="384.0" prefWidth="149.0" spacing="45.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onAction="#onBoutonJouerMusique" prefHeight="49.0" prefWidth="100.0" text="Jouer Musique">
+            <Button fx:id="boutonJouerMusique" mnemonicParsing="false" onAction="#onBoutonJouerMusique" prefHeight="49.0" prefWidth="97.0" text="Jouer Musique">
                <VBox.margin>
                   <Insets top="150.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#onBoutonJouerVideo" prefHeight="46.0" prefWidth="100.0" text="Jouer Video" />
+            <Button fx:id="boutonJouerVideo" mnemonicParsing="false" onAction="#onBoutonJouerVideo" prefHeight="49.0" prefWidth="97.0" text="Jouer Video" />
          </children>
          <padding>
-            <Insets right="10.0" />
+            <Insets left="10.0" />
          </padding></VBox>
    </right>
    <top>
@@ -37,21 +38,27 @@
                   <Insets left="10.0" />
                </HBox.margin>
             </ComboBox>
-            <Label text="JEU DE MOTS CACHÉS">
+            <Label fx:id="titre" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="259.0" text="JEU DE MOTS CACHÉS" translateX="-50.0">
                <HBox.margin>
                   <Insets left="120.0" top="40.0" />
                </HBox.margin>
+               <font>
+                  <Font size="19.0" />
+               </font>
             </Label>
          </children>
       </HBox>
    </top>
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="200.0" prefWidth="403.0" BorderPane.alignment="CENTER">
          <children>
             <Label fx:id="labelMotCache" prefHeight="17.0" prefWidth="85.0" text="* * * * * *" translateY="10.0">
                <VBox.margin>
                   <Insets left="150.0" />
                </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
             </Label>
             <Label fx:id="labelIndice" text="Indice : ..." translateY="25.0">
                <VBox.margin>
@@ -60,7 +67,10 @@
             </Label>
             <HBox prefHeight="176.0" prefWidth="400.0">
                <children>
-                  <Label text="Reponse :" translateX="50.0" translateY="54.0" />
+                  <Label text="Reponse :" translateX="50.0" translateY="54.0">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
                   <TextField fx:id="champReponse" prefHeight="26.0" prefWidth="142.0" translateY="50.0">
                      <HBox.margin>
                         <Insets left="60.0" />
@@ -68,15 +78,15 @@
                   </TextField>
                </children>
             </HBox>
-            <Label fx:id="labelMessage" translateY="-60.0">
+            <Label fx:id="labelMessage" translateX="-55.0" translateY="-60.0">
                <VBox.margin>
                   <Insets left="170.0" />
                </VBox.margin></Label>
-            <Label fx:id="labelEssais" translateY="-50.0">
+            <Label fx:id="labelEssais" translateX="-55.0" translateY="-50.0">
                <VBox.margin>
                   <Insets left="170.0" />
                </VBox.margin></Label>
-            <Label fx:id="labelScore" translateY="-30.0">
+            <Label fx:id="labelScore" translateX="-55.0" translateY="-30.0">
                <VBox.margin>
                   <Insets left="170.0" />
                </VBox.margin></Label>
@@ -92,9 +102,9 @@
    <bottom>
       <VBox prefHeight="115.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <MediaView fx:id="mediaView" fitHeight="95.0" fitWidth="600.0">
+            <MediaView fx:id="mediaView" fitHeight="30.0" fitWidth="100.0" translateX="-50.0">
                <VBox.margin>
-                  <Insets top="10.0" />
+                  <Insets left="290.0" top="10.0" />
                </VBox.margin></MediaView>
          </children>
       </VBox>
