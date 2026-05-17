@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.media.MediaView;
 
 public class ControllerMotsCaches {
@@ -41,32 +42,26 @@ public class ControllerMotsCaches {
     private MediaView mediaView;
 
     @FXML
-    void onChangerTheme(ActionEvent event) {
+    private BorderPane panePrincipal;
+
+    @FXML
+    void onBoutonJouerMusique(ActionEvent event) {
 
     }
 
     @FXML
-    void onJouerMusique(ActionEvent event) {
+    void onBoutonJouerVideo(ActionEvent event) {
 
     }
 
     @FXML
-    void onJouerVideo(ActionEvent event) {
+    void onBoutonMotSuivant(ActionEvent event) {
 
     }
 
     @FXML
-    void onMotSuivant(ActionEvent event) {
+    void onBoutonValider(ActionEvent event) {
 
     }
-
-    @FXML
-    void onValider(ActionEvent event) {
-
-    }
-
-
-
-
 
 }
