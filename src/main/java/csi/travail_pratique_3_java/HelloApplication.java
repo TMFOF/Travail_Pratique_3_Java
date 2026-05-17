@@ -10,8 +10,8 @@ import java.io.IOException;
 public class HelloApplication extends Application {
 
     private static Stage stage;
-    private static final int LARGEUR_APPLICATION = 900;
-    private static final int HAUTEUR_APPLICATION = 6700;
+    private static final int LARGEUR_APPLICATION = 800;
+    private static final int HAUTEUR_APPLICATION = 600;
 
     @Override
     public void start(Stage stage) throws IOException {

@@ -22,7 +22,7 @@ public class ControllerMotsCaches {
     @FXML private Button boutonSuivant;
     @FXML private Button boutonValider;
     @FXML private TextField champReponse;
-    @FXML private ComboBox<?> comboTheme;
+    @FXML private ComboBox<String> comboTheme;
     @FXML private Label labelEssais;
     @FXML private Label labelIndice;
     @FXML private Label labelMessage;
@@ -32,6 +32,8 @@ public class ControllerMotsCaches {
     @FXML private BorderPane panePrincipal;
     String motsPige;
 
+    private static final String CSS_CLAIR  = "/styles/theme-clair.css";
+    private static final String CSS_SOMBRE = "/styles/theme-sombre.css";
 
     private IntegerProperty score          = new SimpleIntegerProperty(0);
     private IntegerProperty essaisRestants = new SimpleIntegerProperty(3);
@@ -59,6 +61,13 @@ public class ControllerMotsCaches {
     @FXML
     public void initialize()
     {
+        comboTheme.getItems().add("Theme Clair");
+        comboTheme.getItems().add("Theme Sombre");
+        comboTheme.setValue("Theme Clair");
+        panePrincipal.getStylesheets().add(
+                getClass().getResource("/styles/theme-clair.css").toExternalForm()
+        );
+
         labelScore.textProperty().bind(score.asString("Score : %d"));
         labelEssais.textProperty().bind(essaisRestants.asString("Essais restants : %d"));
         labelMessage.textProperty().bind(message);
@@ -79,7 +88,7 @@ public class ControllerMotsCaches {
             motCache = motCache + "* ";
         }
 
-        // Calcul du nombre de lettres a afficher dans l'indice (3 ou 4)
+        // Calcul du nombre de lettres
         int nbLettres;
 
         if (motsPige.length() >= 6) {
@@ -127,7 +136,6 @@ public class ControllerMotsCaches {
 
         System.out.println(motsPige);
     }
-
 
 
     @FXML void onBoutonJouerMusique(ActionEvent event) {
@@ -181,8 +189,31 @@ public class ControllerMotsCaches {
                 message.set("Essayez encore !");
             }
 
-
         }
     }
+
+
+    @FXML void onBoutonChangerTheme(ActionEvent event)
+    {
+        String choix = comboTheme.getValue();
+        System.out.println(choix);
+
+        panePrincipal.getStylesheets().clear();
+
+        if (choix.equals("Theme Sombre")) {
+
+            panePrincipal.getStylesheets().add(
+                    getClass().getResource("/styles/theme-sombre.css").toExternalForm()
+            );
+
+        } else {
+
+            panePrincipal.getStylesheets().add(
+                    getClass().getResource("/styles/theme-clair.css").toExternalForm()
+            );
+        }
+
+    }
+
 
 }
