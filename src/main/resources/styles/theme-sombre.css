@@ -1,45 +1,36 @@
 #panePrincipal{
-    -fx-background-color: blue;
+    -fx-background-color: #e2b96f;
 }
+
+#titre{
+    -fx-text-fill: #111111;
+}
+
 #comboTheme{
-
-}
-
-
-#labelMotCache{
-
-}
-
-
-#labelIndice{
-
+    -fx-border-color: black;
 }
 
 #champReponse{
-
+    -fx-border-color: black;
 }
-
-
-#labelMessage{
-
-}
-
-#labelEssais{
-
-}
-
-#labelScore{
-
-}
-
 #boutonValider{
-
+    -fx-border-color: black;
 }
 
 #boutonSuivant{
+    -fx-border-color: black;
 
 }
 
 #mediaView{
+    -fx-border-color: black;
 
+}
+
+#boutonJouerMusique{
+    -fx-border-color: black;
+}
+
+#boutonJouerVideo{
+    -fx-border-color: black;
 }

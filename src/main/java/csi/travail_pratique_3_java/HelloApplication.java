@@ -26,6 +26,7 @@ public class HelloApplication extends Application {
 
         HelloApplication.stage = stage;
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 
