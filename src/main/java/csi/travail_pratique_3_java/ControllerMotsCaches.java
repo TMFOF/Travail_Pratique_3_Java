@@ -11,6 +11,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 
 import java.util.Random;
@@ -28,6 +30,7 @@ public class ControllerMotsCaches {
     @FXML private Label labelScore;
     @FXML private MediaView mediaView;
     @FXML private BorderPane panePrincipal;
+    String motsPige;
 
 
     private IntegerProperty score          = new SimpleIntegerProperty(0);
@@ -68,7 +71,7 @@ public class ControllerMotsCaches {
 
         Random aleatoire = new Random();
         int index = aleatoire.nextInt(mots.length);
-        String motsPige = mots[index];
+        motsPige = mots[index];
 
         String motCache = motsPige.charAt(0) + " ";
 
@@ -76,17 +79,50 @@ public class ControllerMotsCaches {
             motCache = motCache + "* ";
         }
 
-        // Mettre à jour l'affichage du mot et de l'indice
+        // Calcul du nombre de lettres a afficher dans l'indice (3 ou 4)
+        int nbLettres;
+
+        if (motsPige.length() >= 6) {
+            nbLettres = 4;
+        } else {
+            nbLettres = 3;
+        }
+
+        // Construction de l'indice avec les premieres lettres
+        String indice = "";
+        boolean[] positions = new boolean[motsPige.length()];
+
+        int compteur = 0;
+
+        while (compteur < nbLettres) {
+            int position = aleatoire.nextInt(motsPige.length());
+            if (!positions[position]) {
+                positions[position] = true;
+                compteur++;
+            }
+        }
+
+        for (int i = 0; i < motsPige.length(); i++) {
+
+            if (positions[i]) {
+
+                indice = indice + motsPige.charAt(i);
+
+            } else {
+                indice = indice + "*";
+            }
+        }
+
+
         labelMotCache.setText(motCache.trim());
+        labelIndice.setText("Indice : " + indice.trim());
 
         message.set("");
         essaisRestants.set(3);
 
-        // Vider le champ et remettre le curseur
         champReponse.clear();
         champReponse.requestFocus();
 
-        // Activer Valider et desactiver Suivant
         boutonValider.setDisable(false);
         boutonSuivant.setDisable(true);
     }
@@ -95,6 +131,9 @@ public class ControllerMotsCaches {
 
 
     @FXML void onBoutonJouerMusique(ActionEvent event) {
+        Media audio = new Media(this.getClass().getResource("/audio/audio1.mp3").toExternalForm());
+        MediaPlayer lecteurMultimedia = new MediaPlayer(audio);
+        lecteurMultimedia.play();
 
     }
 
@@ -104,10 +143,46 @@ public class ControllerMotsCaches {
 
     @FXML void onBoutonMotSuivant(ActionEvent event) {
 
+        afficherMot();
     }
 
     @FXML void onBoutonValider(ActionEvent event) {
 
+        boolean lettreTrouve = true;
+        String motTrouve = "";
+        String reponse = champReponse.getText().trim().toUpperCase();
+
+        for(int i = 0; i < motsPige.length(); i++)
+        {
+            if(i < reponse.length() && reponse.charAt(i) == motsPige.charAt(i))
+            {
+                motTrouve =  motTrouve + motsPige.charAt(i);
+            }
+            else
+            {
+                motTrouve = motTrouve + "* ";
+                lettreTrouve = false;
+            }
+        }
+
+        labelMotCache.setText(motTrouve.trim());
+        if (lettreTrouve) {
+            score.set(score.get() + 10);
+            message.set("Bravo !");
+            boutonValider.setDisable(true);
+            boutonSuivant.setDisable(false);
+        } else {
+            essaisRestants.set(essaisRestants.get() - 1);
+            if (essaisRestants.get() == 0) {
+                message.set("Perdu ! Le mot etait : " + motsPige);
+                boutonValider.setDisable(true);
+                boutonSuivant.setDisable(false);
+            } else {
+                message.set("Essayez encore !");
+            }
+
+
+        }
     }
 
 }
