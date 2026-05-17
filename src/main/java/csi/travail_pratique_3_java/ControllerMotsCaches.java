@@ -113,7 +113,6 @@ public class ControllerMotsCaches {
             }
         }
 
-
         labelMotCache.setText(motCache.trim());
         labelIndice.setText("Indice : " + indice.trim());
 
@@ -125,8 +124,9 @@ public class ControllerMotsCaches {
 
         boutonValider.setDisable(false);
         boutonSuivant.setDisable(true);
-    }
 
+        System.out.println(motsPige);
+    }
 
 
 
@@ -134,15 +134,15 @@ public class ControllerMotsCaches {
         Media audio = new Media(this.getClass().getResource("/audio/audio1.mp3").toExternalForm());
         MediaPlayer lecteurMultimedia = new MediaPlayer(audio);
         lecteurMultimedia.play();
-
     }
 
     @FXML void onBoutonJouerVideo(ActionEvent event) {
-
+        Media video = new Media(this.getClass().getResource("/video/video.mp4").toExternalForm());
+        MediaPlayer lecteurMultimedia = new MediaPlayer(video);
+        mediaView.setMediaPlayer(lecteurMultimedia);
     }
 
     @FXML void onBoutonMotSuivant(ActionEvent event) {
-
         afficherMot();
     }
 
