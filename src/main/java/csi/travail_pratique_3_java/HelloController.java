@@ -4,8 +4,10 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
+import javafx.scene.Node;
 
 import java.io.IOException;
 
@@ -60,7 +62,7 @@ public class HelloController {
         FXMLLoader loader = new FXMLLoader(
                 HelloApplication.class.getResource(fichierFxml + ".fxml")
         );
-        Pane vue = loader.load();
+        Node vue = loader.load();
         contenuCentre.getChildren().setAll(vue);
     }
 
