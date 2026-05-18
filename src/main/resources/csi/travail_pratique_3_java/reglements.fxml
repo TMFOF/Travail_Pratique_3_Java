@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.TextArea?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="csi.travail_pratique_3_java.HelloController"
-            prefHeight="400.0" prefWidth="600.0">
 
-</AnchorPane>
+<TextArea prefHeight="504.0" prefWidth="362.0" text="Règlement du jeu — Mots Cachés&#10;&#10;Objectif : trouver le mot informatique caché en utilisant les indices fournis.&#10;&#10;Un mot est affiché partiellement et la première lettre est toujours visible. Exemple : C * * * pour le mot CLIC.&#10;&#10;Un indice est affiché en dessous du mot. L’indice montre quelques lettres du mot à des positions aléatoires. Exemple : C**C pour le mot CLIC.&#10;&#10;Écris ta réponse dans le champ de texte puis clique sur (Valider ) pour vérifier ta réponse.&#10;&#10;Bonne réponse : tu gagnes 10 points.&#10;Mauvaise réponse : tu perds un essai.&#10;&#10;Tu as 3 essais par mot. Si tu épuises tes 3 essais, le mot est révélé et tu passes au mot suivant.&#10;&#10;Boutons :&#10;&#10;(Valider ) : vérifie ta réponse.&#10;( Mot suivant ) : passe au mot suivant après une bonne réponse ou après avoir perdu.&#10;&#10;Tu peux changer l’apparence du jeu avec la liste déroulante en haut de l’écran. Deux thèmes sont disponibles : Theme Clair et Theme Sombre." wrapText="true" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" />

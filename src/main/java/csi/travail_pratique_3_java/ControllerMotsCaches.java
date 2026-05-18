@@ -1,3 +1,9 @@
+//NOM : Tiecoura Mamadou Fofana
+//explication du patron de conception utilisé :
+// PATRON OBSERVER : lier les labels aux proprietes observables
+// À partir d'ici, chaque fois qu'une propriete change de valeur,
+// le label correspondant se met à jour automatiquement
+
 package csi.travail_pratique_3_java;
 
 import javafx.beans.property.IntegerProperty;
